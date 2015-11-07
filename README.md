@@ -1,4 +1,4 @@
 # bpm-panela
-Open source software, dbcaturra@gmail.com
+Opensource software by dbcaturra@gmail.com
 
-Yu can use in GPLv3 Licnese.
+You can use in GPLv3 License.
