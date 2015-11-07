@@ -1,0 +1,36 @@
+# -*- encoding:utf-8 -*-
+from flask import Blueprint, redirect, render_template, request, make_response, session
+
+from google.appengine.ext import db
+
+
+frontendbp = Blueprint('frontendbp',__name__)
+
+@frontendbp.route('/')
+def index():
+    return "Hellow world"
+
+
+@frontendbp.route('/pollpush', methods=['POST'])
+def pollPush():
+    if request.method == "POST":
+        name_ = request.form['name']
+        email_ = request.form['email']
+        subject_ = request.form['subject']
+        message_ = request.form['message']
+
+	#eMail
+        name_ = "Usuario"
+        email_ = "eMail"
+        subject_ = "Buenas practicas manofactura Panela - Corredor tecnológico"
+        message_ = "Se ha publicado una encuesta! puder verla en http://bpm-panela.appspot.com"
+        from google.appengine.api import mail
+        try:
+            message = mail.EmailMessage(sender="bpm-panela@appspot.gserviceaccount.com",
+                                        subject=subject_)
+            message.to = "presidencia.asiac@ingeniagro.org, dbcaturra@gmail.com"
+            message.body = "Mensaje: " + message_ + " enviado: " + email_ + " Nombre: " + name_
+            message.send()
+            return "Ok", 202
+        except Exception as e:
+            print e

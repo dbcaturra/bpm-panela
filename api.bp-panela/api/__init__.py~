@@ -1,0 +1,14 @@
+# -*- encoding:utf-8 -*-
+from flask import Flask, Blueprint
+from salusgp.views.frontend import frontendbp
+from jobs.urls import joburls
+
+app = Flask(__name__)
+app.register_blueprint(frontendbp, url_prefix='')
+
+#Admin
+from flask_admin import Admin, base
+
+admin = Admin(app, name='BPM Panela', template_mode='bootstrap3')
+
+

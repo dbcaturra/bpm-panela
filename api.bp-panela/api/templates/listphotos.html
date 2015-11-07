@@ -1,0 +1,36 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h1>Ultimas fotos</h1>
+<div class="row">
+  {% for photo in photos %}
+  <div class="col-xs-6 col-sm-4">
+    <div class="thumbnail">
+			<img src="/api/service/getphoto/{{photo.filename}}" class="img-thumbnail" width="100px"/>
+			<div class="caption">
+        <p># encuesta: {{photo.id}}, filename: {{photo.filename}}</p>
+			</div>
+		</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block main_menu %}
+
+<ul class="nav navbar-nav">
+    {{ layout.menu() }}
+    <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Services<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+      			 <li>
+      			  <a href="/api/service/poll" role="button">Encuestas</a>
+      			</li>
+                  <li>
+      			  <a href="/api/service/photo" role="button">Fotos</a>
+      			</li>
+          </ul>
+    </li>
+</ul>
+
+{% endblock %}
